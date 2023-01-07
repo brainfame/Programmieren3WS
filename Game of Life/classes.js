@@ -1,80 +1,8 @@
 // //Lekion am 19.02.2022
 
 
-class Grass
+class Grass extends LivingCreature
 {
-    constructor(x,y)
-    {
-        this.x = x;
-        this.y = y;
-        this.multiplyer = 0; //sorgt fÃ¼r normale Fortpflanzung
-        this.roundCounter = 0; //ZÃ¤hlt Runden. ISt verantworlich fÃ¼r periodische Mutation(alle 10 Runden)
-        this.offDeff = 1; //Standart OffDeff Wert fÃ¼r Grass
-        this.directions = 
-        [
-            [this.x-1, this.y-1],
-            [this.x  , this.y-1],
-            [this.x+1, this.y-1],
-            [this.x-1, this.y  ],
-            [this.x+1, this.y  ],
-            [this.x-1, this.y+1],
-            [this.x  , this.y+1],
-            [this.x+1, this.y+1]
-        ]
-    } 
-
-    choseField(character)
-    {
-        let found = [];
-
-        for(let i in this.directions)
-        {
-            let pos = this.directions[i];
-            let x = pos[0];
-            let y = pos[1];
-
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length)
-            {
-                if(matrix[y][x] == character)
-                {
-                    found.push(pos);  //push stellt den Parameter an das Ende des Arrays
-                }
-
-            }
-        }
-
-        return found
-    }
-
-    multiply()
-    {
-        this.roundCounter++;
-        //console.log(this.roundCounter);
-        this.multiplyer++;
-        // jetzt darf sich vermehrt werden
-        if(this.multiplyer > 6)
-        {
-            // gibt es leere nachbarfelder - chooseField(0)
-            let emptyFields = this.choseField(0);
-           //console.log(emptyFields);
-            if(emptyFields.length > 0)
-            {
-                // dann zufÃ¤llig ein Position eines NB-Field aus der Liste
-                let theChoosenField = random(emptyFields);
-                //[x, y]
-                let newX = theChoosenField[0];
-                let newY = theChoosenField[1];
-                // dann gras-Objekt erstellen
-                let grassObj = new Grass(newX, newY);
-                // Gras-Objekt der Liste mit vorhandne grasObjekten hinzufÃ¼gen
-                grassArray.push(grassObj);
-                // Spielfeld aktualisieren
-                matrix[newY][newX] = 1;
-            }
-            // reset rundenzÃ¤hler
-            this.multiplyer = 0;
-        }
-    }
 
     mutate() //Funktion zum Mutieren
     {
