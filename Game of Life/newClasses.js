@@ -10,51 +10,14 @@ als vom Verteidiger (bei Gleichstand--> kein Fressen). Dieser Wert beeinflusst j
 Je hÃ¶her der OffDeff desto geringer (einfach abgezogen) die Reproduktionsgeschwindigkeit.
 */
 
-class EvolvedGrass
+class EvolvedGrass extends LivingCreature
 {
     constructor(x,y, offDeff)
     {
-        this.x = x;
-        this.y = y;
-        this.multiplyer = 0;
-        this.roundCounter = 0;
+        super(x, y);
         this.offDeff = offDeff;
         this.multiplyBoarder = 5 + this.offDeff; //Der Multiplikator wird durch den offDeff Wert verÃ¤ndert
-        this.directions = 
-        [
-            [this.x-1, this.y-1],
-            [this.x  , this.y-1],
-            [this.x+1, this.y-1],
-            [this.x-1, this.y  ],
-            [this.x+1, this.y  ],
-            [this.x-1, this.y+1],
-            [this.x  , this.y+1],
-            [this.x+1, this.y+1]
-        ]
     } 
-
-    choseField(character)
-    {
-        let found = [];
-
-        for(let i in this.directions)
-        {
-            let pos = this.directions[i];
-            let x = pos[0];
-            let y = pos[1];
-
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length)
-            {
-                if(matrix[y][x] == character)
-                {
-                    found.push(pos);  //push stellt den Parameter an das Ende des Arrays
-                }
-
-            }
-        }
-
-        return found
-    }
 
     multiply()
     {
