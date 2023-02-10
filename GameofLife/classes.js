@@ -67,32 +67,66 @@ class Grazer extends LivingMovingCreature
         this.lives = 5;
         this.offDeff = 5; //Standart OffDeff WErt fÃ¼r Grazer
     }
-    
 
-    
-
-    
-    
-    
-    
-    die()
+    eat()
     {
-        // Spielfeld aktualisieren - Wert 0
-        matrix[this.y][this.x] = 0;
-        // Grasfresser Liste aktualisieren - gelÃ¶scht
-        // wir suchen in der Grasfresser Liste ein Objekt mit gleich x und y Werten
-        for(let i in grazerArr)
+        this.roundCounter++;
+        let grassFields = this.chooseBetterField(this.offDeff, "grazer");
+        //console.log(grassFields);     
+        if(grassFields.length > 0)
         {
-            let grazer = grazerArr[i];
-            if(grazer.x == this.x && grazer.y == this.y)
+            let theChoosenField = random(grassFields);
+            let newX = theChoosenField[0];
+            let newY = theChoosenField[1];
+            //console.log(newX, newY);
+            
+            // alte Position in der Matrix bekommt 0
+            matrix[this.y][this.x] = 0;
+            // die Neue Position
+            this.x = newX;
+            this.y = newY;
+            matrix[newY][newX] = 5;
+            // spielfeld aktualisieren mit der neuen Pos
+            this.multiply++;
+            
+            // Entferne aus dem Gras-Array entfernen
+            for(let i in grassArray)
             {
-                // gefunden - nun lÃ¶schen
-                grazerArr.splice(i, 1);
-                break;
+                let grassObj = grassArray[i];
+                if(grassObj.x == newX && grassObj.y == newY)
+                {
+                    // lÃ¶sche grassObj
+                    grassArray.splice(i, 1);
+                    break;
+                }
+            }
+            for(let i in evolvedGrassArr)
+            {
+                let evolvedObj = evolvedGrassArr[i];
+                if(evolvedObj.x == newX && evolvedObj.y == newY)
+                {
+                    evolvedGrassArr.splice(i, 1);
+                    break;
+                }
+            }
+            this.lives = 5;
+            if(this.multiply >= 5)
+            {
+                this.multiplyer();
             }
         }
- 
+        else if(this.lives <= 0) // wenn keine Energie vorhanden - stirb
+        {
+            this.die();
+        }
+        else 
+        {
+            this.lives--;
+            this.move(5);
+        }
     }
+    
+    
 
     multiplyer()
     {
@@ -190,42 +224,42 @@ class FleshGrazer
         
     }
 
-    chooseBetterField(maxOffDeff) // neue Funktion gibt alle GrÃ¤ser
-    //unter dem eigenen OffDeff Wert an
-    {
-        this.newDirections();
-        let found = [];
-        for(let i in this.directions)
-        {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length)
-            {
-                for(let h in grazerArr) //normale Grazer-positionen werden mit jetziger Position verglichen
-                {
-                    let grazerObj = grazerArr[h];
-                    if(grazerObj.x == x && grazerObj.y == y)
-                    {
-                        found.push(this.directions[i]); //alle passenden normalen Grazer kommen in das Array
-                    }
-                }
-                for(let j in evolvedGrazerArr) //s.o.
-                {
-                    let evolvedGrazerObj = evolvedGrazerArr[j];
-                    if(evolvedGrazerObj.x == x && evolvedGrazerObj.y == y && evolvedGrazerObj.offDeff < maxOffDeff) //es dÃ¼rfen nur Grazer mit niederigerem
-                    //offDeff Wert gefressen werden
-                    {
-                        found.push(this.directions[i]); //s.o.
-                    }
-                }
-            }
-        }
-        return found;
-    }
+    // chooseBetterField(maxOffDeff) // neue Funktion gibt alle GrÃ¤ser
+    // //unter dem eigenen OffDeff Wert an
+    // {
+    //     this.newDirections();
+    //     let found = [];
+    //     for(let i in this.directions)
+    //     {
+    //         let x = this.directions[i][0];
+    //         let y = this.directions[i][1];
+    //         if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length)
+    //         {
+    //             for(let h in grazerArr) //normale Grazer-positionen werden mit jetziger Position verglichen
+    //             {
+    //                 let grazerObj = grazerArr[h];
+    //                 if(grazerObj.x == x && grazerObj.y == y)
+    //                 {
+    //                     found.push(this.directions[i]); //alle passenden normalen Grazer kommen in das Array
+    //                 }
+    //             }
+    //             for(let j in evolvedGrazerArr) //s.o.
+    //             {
+    //                 let evolvedGrazerObj = evolvedGrazerArr[j];
+    //                 if(evolvedGrazerObj.x == x && evolvedGrazerObj.y == y && evolvedGrazerObj.offDeff < maxOffDeff) //es dÃ¼rfen nur Grazer mit niederigerem
+    //                 //offDeff Wert gefressen werden
+    //                 {
+    //                     found.push(this.directions[i]); //s.o.
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return found;
+    // }
     
     eat()
     {
-        let grazerFields = this.chooseBetterField(this.offDeff);
+        let grazerFields = this.chooseBetterField(this.offDeff, "fleshGrazer");
         if(grazerFields.length > 0)
         {
             let theChoosenField = random(grazerFields);
@@ -270,19 +304,19 @@ class FleshGrazer
         }
     }
     
-    die()
-    {
-        matrix[this.y][this.x] = 0;
-        for(let i in fleshGrazerArr)
-        {
-            let fleshGrazer = fleshGrazerArr[i];
-            if(fleshGrazer.x == this.x && fleshGrazer.y == this.y)
-            {
-                fleshGrazerArr.splice(i, 1);
-                break;
-            }
-        }
-    }
+    // die()
+    // {
+    //     matrix[this.y][this.x] = 0;
+    //     for(let i in fleshGrazerArr)
+    //     {
+    //         let fleshGrazer = fleshGrazerArr[i];
+    //         if(fleshGrazer.x == this.x && fleshGrazer.y == this.y)
+    //         {
+    //             fleshGrazerArr.splice(i, 1);
+    //             break;
+    //         }
+    //     }
+    // }
 
     multiplyer()
     {

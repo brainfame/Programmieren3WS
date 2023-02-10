@@ -17,7 +17,7 @@ let matrix = [
         matrix[y] = [];
         for(let x = 0; x < laenge; x++)
         {
-            matrix[y][x] = Math.floor(random(02));
+            matrix[y][x] = Math.floor(random(2));
         }
     }
 
@@ -78,11 +78,23 @@ function setup()
 function draw(){
 
     frameRate(5);
+    for(let i in grassArray)
+    {
+        let grassObj = grassArray[i];
+       grassObj.multiply();
+       grassObj.mutate();
+    }
     for(let i in evolvedGrassArr)
     {
         let evolvedGrassObj = evolvedGrassArr[i];
         evolvedGrassObj.multiply();
         evolvedGrassObj.mutate();
+    }
+    for(let i in grazerArr)
+    {
+        let grazerObj = grazerArr[i];
+        grazerObj.eat();
+        grazerObj.mutate();
     }
     for(let i in evolvedGrazerArr)
     {
@@ -90,20 +102,6 @@ function draw(){
         evolvedGrazerObj.eat();
         evolvedGrazerObj.mutate();
     }
-    for(let i in grassArray)
-    {
-        let grassObj = grassArray[i];
-       grassObj.multiply();
-       grassObj.mutate();
-    }
-
-    for(let i in grazerArr)
-    {
-        let grazerObj = grazerArr[i];
-        grazerObj.eat();
-        grazerObj.mutate();
-    }
-
     for(let i in fleshGrazerArr)
     {
         let fleshObj = fleshGrazerArr[i];

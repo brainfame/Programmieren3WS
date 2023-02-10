@@ -34,7 +34,7 @@ class EvolvedGrass extends LivingCreature
                 let evolvedGrassObj = new EvolvedGrass(newX, newY,oldOffDeff); //offDeff Wert Ã¤ndert sich nicht
                 //wegen nomaler Fortpflanzung
                 evolvedGrassArr.push(evolvedGrassObj);
-                matrix[newY][newX] = oldOffDeff;
+                matrix[newY][newX] = oldOffDeff; // Der offDeff Wert ist die definition für die Kreatur
             }
             this.multiplyer = 0;
         }
@@ -223,20 +223,20 @@ class EvolvedGrazer
         }
     }
     
-    die()
-    {
-        matrix[this.y][this.x] = 0;
-        for(let i in evolvedGrazerArr)
-        {
-            let evolvedGrazer = evolvedGrazerArr[i];
-            if(evolvedGrazer.x == this.x && evolvedGrazer.y == this.y)
-            {
-                evolvedGrazerArr.splice(i, 1);
-                break;
-            }
-        }
- 
-    }
+    // die()
+    // {
+    //     matrix[this.y][this.x] = 0;
+    //     for(let i in evolvedGrazerArr)
+    //     {
+    //         let evolvedGrazer = evolvedGrazerArr[i];
+    //         if(evolvedGrazer.x == this.x && evolvedGrazer.y == this.y)
+    //         {
+    //             evolvedGrazerArr.splice(i, 1);
+    //             break;
+    //         }
+    //     }
+    // }
+    
 
     multiplyer()
     {
