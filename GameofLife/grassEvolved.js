@@ -4,7 +4,7 @@ class EvolvedGrass extends LivingCreature
     {
         super(x, y);
         this.offDeff = offDeff;
-        this.multiplyBoarder = 5 + this.offDeff; //Der Multiplikator wird durch den offDeff Wert verÃ¤ndert
+        this.multiplyBoarder = 3 + this.offDeff; //Der Multiplikator wird durch den offDeff Wert verÃ¤ndert
     } 
 
     multiply()

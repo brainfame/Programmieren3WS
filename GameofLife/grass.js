@@ -11,7 +11,7 @@ class Grass extends LivingCreature
         //console.log(this.roundCounter);
         this.multiplyer++;
         // jetzt darf sich vermehrt werden
-        if(this.multiplyer > 6)
+        if(this.multiplyer > 5)
         {
             // gibt es leere nachbarfelder - chooseField(0)
             let emptyFields = this.choseField(0);

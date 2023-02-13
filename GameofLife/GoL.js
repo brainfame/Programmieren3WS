@@ -17,17 +17,23 @@ let matrix = [
         matrix[y] = [];
         for(let x = 0; x < laenge; x++)
         {
-            matrix[y][x] = Math.floor(random(2));
+            matrix[y][x] = 0;
         }
     }
 
-    for(let i = 0; i < 10; i++) //Anzahl der Fleischfresser
+    for(let i = 0; i < 1800; i++) //Anzahl der Fleischfresser
+    {
+        let y = Math.floor(random(0, hoehe));
+        let x = Math.floor(random(0, laenge));
+        matrix[y][x] = 1;
+    }
+    for(let i = 0; i < 20; i++) //Anzahl der Fleischfresser
     {
         let y = Math.floor(random(0, hoehe));
         let x = Math.floor(random(0, laenge));
         matrix[y][x] = 10;
     }
-    for(let i = 0; i < 15; i++) //Anzahl der Grasfresser
+    for(let i = 0; i < 30; i++) //Anzahl der Grasfresser
     {
         let y = Math.floor(random(0, hoehe));
         let x = Math.floor(random(0, laenge));
@@ -43,8 +49,10 @@ let fleshGrazerArr = [];
 let evolvedGrassArr= []; //neues Array fÃ¼r evolved-Klasse
 let evolvedGrazerArr = []; //neues Array fÃ¼r evolved-Klasse
 
+
 function setup()
 {
+    textSize(10);
     matrix = getRandomMatrix(60, 60);
     frameRate(5);
     createCanvas(matrix[0].length * side +1, matrix.length * side+1);
@@ -145,11 +153,9 @@ function draw(){
             }
             for(let i in evolvedGrassArr)
             {
-                let evolvedGrass = evolvedGrassArr[i];
-                if(evolvedGrass.x == x && evolvedGrass.y == y)
+                if(evolvedGrassArr[i].x == x && evolvedGrassArr[i].y == y)
                 {
-                    color1 = evolvedGrass.offDeff;
-                    colorReal = colorGrassFinder(color1); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
+                    colorReal = colorGrassFinder(evolvedGrassArr[i].offDeff); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
                     fill(colorReal);
                     rect(x * side, y *side , side, side);        
                     continue loop1;
@@ -157,11 +163,9 @@ function draw(){
             }
             for(let i in evolvedGrazerArr)
             {
-                let evolvedGrazer = evolvedGrazerArr[i];
-                if(evolvedGrazer.x == x && evolvedGrazer.y == y)
+                if(evolvedGrazerArr[i].x == x && evolvedGrazerArr[i].y == y)
                 {
-                    color1 = evolvedGrazer.offDeff; //ohne Zwischen-Deklarierung gibt es Fehlermeldung
-                    colorReal = colorGrazerFinder(color1); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
+                    colorReal = colorGrazerFinder(evolvedGrazerArr[i].offDeff); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
                     fill(colorReal);
                     rect(x * side, y *side , side, side);        
                     continue loop1;

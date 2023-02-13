@@ -1,8 +1,8 @@
 class LivingMovingCreature extends LivingCreature
 {
-    constructor()
+    constructor(x, y)
     {
-        super();
+        super(x, y);
         this.lives = 5; //default für Grazer; Bei anderen soll überschrieben werden
     }
     
@@ -115,7 +115,7 @@ class LivingMovingCreature extends LivingCreature
             this.y = newY;
             // spielfeld aktualisieren mit der neuen Pos
             matrix[newY][newX] = creatureOffDeff;
-            this.multiply = 0;
+            this.multiplyer = 0;
         }
         
         
@@ -148,6 +148,7 @@ class LivingMovingCreature extends LivingCreature
                 if(fleshGrazer.x == this.x && fleshGrazer.y == this.y)
                 {
                     fleshGrazerArr.splice(i, 1);
+                    console.log("test");
                     break;
                 }
             }
