@@ -3,11 +3,11 @@ class FleshGrazer extends LivingMovingCreature
     constructor(x, y)
     {
         super(x, y);
-        this.lives = 8; //lebensanzeige
+        this.lives = 15; //lebensanzeige
         this.offDeff = 10; //Standart OffDeff Wert fÃ¼r Grazer
-        
+
     }
-    
+
     // newDirections()
     // {
     //     this.directions = [
@@ -23,8 +23,8 @@ class FleshGrazer extends LivingMovingCreature
     // }
 
 
-    
-    
+
+
     // move()
     // {
     //     let emptyFields = this.chooseField(0);
@@ -40,8 +40,8 @@ class FleshGrazer extends LivingMovingCreature
     //         this.y = newY;
     //         matrix[newY][newX] = this.offDeff;
     //     }
-        
-        
+
+
     // }
 
     // chooseBetterField(maxOffDeff) // neue Funktion gibt alle GrÃ¤ser
@@ -76,7 +76,7 @@ class FleshGrazer extends LivingMovingCreature
     //     }
     //     return found;
     // }
-    
+
     eat()
     {
         let grazerFields = this.chooseBetterField(this.offDeff, "fleshGrazer");
@@ -90,7 +90,7 @@ class FleshGrazer extends LivingMovingCreature
             this.y = newY;
             matrix[newY][newX] = this.offDeff;
             this.multiplyer++;
-            
+
             for(let i in grazerArr) //entfernen von potenziell gefressenem Grazer
             {
                 let grazerObj = grazerArr[i];
@@ -118,13 +118,13 @@ class FleshGrazer extends LivingMovingCreature
         {
             this.die("fleshGrazer");
         }
-        else 
+        else
         {
             this.lives--;
             this.move(this.offDeff);
         }
     }
-    
+
     // die()
     // {
     //     matrix[this.y][this.x] = 0;

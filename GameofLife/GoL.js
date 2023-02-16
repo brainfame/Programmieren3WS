@@ -27,7 +27,7 @@ let matrix = [
         let x = Math.floor(random(0, laenge));
         matrix[y][x] = 1;
     }
-    for(let i = 0; i < 20; i++) //Anzahl der Fleischfresser
+    for(let i = 0; i < 25; i++) //Anzahl der Fleischfresser
     {
         let y = Math.floor(random(0, hoehe));
         let x = Math.floor(random(0, laenge));
@@ -126,8 +126,9 @@ function draw(){
                 let grass = grassArray[i];
                 if(grass.x == x && grass.y == y) //Gleicht jetzige Position mit der von jedem Grass-Objekt ab(umstÃ¤ndlich).
                 {
-                    fill(37, 122, 37);
-                    rect(x * side, y *side , side, side);        
+                    let colorReal = colorGrassFinder(grass.offDeff);
+                    fill(colorReal);
+                    rect(x * side, y *side , side, side);
                     continue loop1;
                 }
             }
@@ -136,8 +137,9 @@ function draw(){
                 let grazer = grazerArr[i];
                 if(grazer.x == x && grazer.y == y)
                 {
-                    fill(247, 206, 1);
-                    rect(x * side, y *side , side, side);        
+                    let colorReal = colorGrazerFinder(grazer.offDeff);
+                    fill(colorReal);
+                    rect(x * side, y *side , side, side);
                     continue loop1;
                 }
             }
@@ -147,7 +149,7 @@ function draw(){
                 if(flesh.x == x && flesh.y == y)
                 {
                     fill(255, 0, 0);
-                    rect(x * side, y *side , side, side);        
+                    rect(x * side, y *side , side, side);
                     continue loop1;
                 }
             }
@@ -155,9 +157,9 @@ function draw(){
             {
                 if(evolvedGrassArr[i].x == x && evolvedGrassArr[i].y == y)
                 {
-                    colorReal = colorGrassFinder(evolvedGrassArr[i].offDeff); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
+                    let colorReal = colorGrassFinder(evolvedGrassArr[i].offDeff); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
                     fill(colorReal);
-                    rect(x * side, y *side , side, side);        
+                    rect(x * side, y *side , side, side);
                     continue loop1;
                 }
             }
@@ -165,9 +167,9 @@ function draw(){
             {
                 if(evolvedGrazerArr[i].x == x && evolvedGrazerArr[i].y == y)
                 {
-                    colorReal = colorGrazerFinder(evolvedGrazerArr[i].offDeff); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
+                    let colorReal = colorGrazerFinder(evolvedGrazerArr[i].offDeff); //Funktion, um nach Generation die Farbe zu verÃ¤ndern
                     fill(colorReal);
-                    rect(x * side, y *side , side, side);        
+                    rect(x * side, y *side , side, side);
                     continue loop1;
                 }
             }

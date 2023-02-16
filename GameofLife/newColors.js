@@ -7,11 +7,15 @@ function colorGrassFinder(offDeff)
     let evolvedgrasColor;
     if(offDeff <= 1)
     {
+        evolvedgrasColor = [100, 231, 100];
+    }
+    else if(offDeff <= 3)
+    {
         evolvedgrasColor = [37, 122, 37];
     }
     else
     {
-        evolvedgrasColor = [0, 0, 0,];
+        evolvedgrasColor = [24, 78, 24];
     }
     return evolvedgrasColor;
 }
@@ -23,21 +27,14 @@ function colorGrazerFinder(offDeff)
     if(offDeff <= 5)
     {
         evolvedgrazerColor = [247, 206, 1];
-        return evolvedgrazerColor;
     }
-    if(offDeff == 6 || offDeff == 7)
+    else if(offDeff <= 7)
     {
-        evolvedgrazerColor = [102, 120, 0];
-        return evolvedgrazerColor;
+        evolvedgrazerColor = [204, 102, 0];
     }
-    if(offDeff == 8 || offDeff == 9)
+    else
     {
-        evolvedgrazerColor = [255, 128, 0];
-        return evolvedgrazerColor;
+        evolvedgrazerColor = [255, 102, 153];
     }
-    if(offDeff >= 10)
-    {
-        evolvedgrazerColor = [102, 51, 0];
-        return evolvedgrazerColor;
-    }
+    return evolvedgrazerColor;
 }
