@@ -1,15 +1,14 @@
-//Square Klassen Modul
+const { appendFile } = require("fs");
 
-module.exports = class Square
+module.exports = class DoubleCounter
 {
-    constructor(a, b)
+    constructor(doubleNumber)
     {
-        this.length = a;
-        this.height = b;
+        this.num = doubleNumber;
     }
 
-    getArea()
+    double()
     {
-        return this.height*this.length;
+        return this.num * 2;
     }
 }
