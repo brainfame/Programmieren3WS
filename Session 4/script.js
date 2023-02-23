@@ -2,8 +2,9 @@ let clickCounter = 0;
 function clickDealer(evt){
     //console.log(evt);
     clickCounter++;
-    let str = "pleasure doing buissnis with you " + clickCounter;
-    this.innerText = str;
+    let str = "pleasure doing buissnis with you";
+    let str2 = clickCounter;
+    this.innerText = str, str2;
 }
 
 let p = document.getElementById("pElement");
