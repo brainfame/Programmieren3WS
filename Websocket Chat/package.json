@@ -2,14 +2,14 @@
   "name": "session-7",
   "version": "1.0.0",
   "description": "",
-  "main": "serbver.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Abel S",
+  "author": "Abel Sadoyan",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.6.1"
   }
 }

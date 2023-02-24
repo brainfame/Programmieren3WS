@@ -1,36 +1,35 @@
 const express = require("express");
 const app = express();
-let httpServer = require("http").Server(app);
-let {Server} = require("socket.io");
-const io  = new Server(httpServer);
-
+let server = require("http").Server(app);
+let io = require("socket.io")(server);
 let messages = [];
 
-app.use(express.static("./"));
-
-app.get("/", function(res, req)
-{
-    res.redirect("index.html");
-});
-
-httpServer.listen(3000, function()
+app.listen(3000, function()
 {
     console.log("Server gestartet");
 });
 
+app.use(express.static("./"));
+app.get("/messages", function(req, res)
+{
+    res.redirect("index.html");
+});
+
 io.on("connection", function(socket)
 {
-    console.log("Websocket connection established", );
-
-    for(let i = 0; i < messages.length; i++)
+    for(let i in messages)
     {
-        socket.emit("display message", messages[i]);
+        io.sockets.emit("display message", messages[i]); //Sende jede verfasste Nachricht an jede neue Verbindung
     }
     socket.on("send message", function(data)
     {
         messages.push(data);
-        io.emit("display message", data);
-
+        io.sockets.emit("display messages", data); //
     });
+});
+//bei falscher Adresse:
+app.get("*", function(req, res)
+{
+    res.status(404).send("<h1>Not Found<h1>"); //Errorcode
 });
 
