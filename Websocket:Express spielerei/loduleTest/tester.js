@@ -1,4 +1,4 @@
-const express = require("Express"); // Implementiert die express-Bib
+const express = require("express"); // Implementiert die express-Bib
 const DoubleCounter = require("./square.js");
 const app = express(); //erstellt ein Objekt
 app.use(express.static("../GameofLife"));

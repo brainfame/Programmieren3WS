@@ -4,7 +4,7 @@ let server = require("http").Server(app);
 let io = require("socket.io")(server);
 let messages = [];
 
-app.listen(3000, function()
+server.listen(3000, function()
 {
     console.log("Server gestartet");
 });
