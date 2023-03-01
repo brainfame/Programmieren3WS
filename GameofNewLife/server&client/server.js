@@ -11,10 +11,10 @@ server.listen(8080, function() //Anfangsfunction bei Aktivierung des Servers Sie
     console.log("Server started");
 });
 
-app.use(express.static("../"));
+app.use(express.static("./"));
 app.get("/GOL", function()
 {
-    blablalba;
+    res.redirect("indexSC.html");
 });
 
 io.on("new connect", function(socket)
