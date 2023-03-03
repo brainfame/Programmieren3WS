@@ -5,21 +5,26 @@ const express = require("express");
 const app = express();
 let server = require("http").Server(app);
 let io = require("socket.io")(server);
+const GoL = require("../GoL");
+
+
 
 server.listen(8080, function() //Anfangsfunction bei Aktivierung des Servers Siehe Terminal
 {
     console.log("Server started");
 });
 
-app.use(express.static("../"));
+//app.use(express.static("../"));
 app.get("/GOL", function()
 {
-    blablalba;
+    res.redirect("indexSC.html");   
 });
 
-io.on("new connect", function(socket)
+io.on("connection", function(socket)
 {
-    blavblabal;
+    console.log(io);
+    console.log(socket);
+    //GoL.main();
 });
 
 

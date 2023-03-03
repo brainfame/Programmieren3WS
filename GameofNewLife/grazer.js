@@ -1,4 +1,5 @@
-class Grazer extends LivingMovingCreature
+const LivingMovingCreature = require("./livingMovingCreature");
+module.exports = class Grazer extends LivingMovingCreature
 {
     constructor(x, y)
     {

@@ -1,4 +1,5 @@
-class Grass extends LivingCreature
+const LivingCreature = require("./livingCreature");
+module.exports = class Grass extends LivingCreature
 {
     constructor(x,y)
     {

@@ -1,4 +1,4 @@
-class LivingCreature // soll als übergeordnete Klasse für Grass, Grazor, fleshgrazer und deren Evolutionen dienen
+module.exports = class LivingCreature // soll als übergeordnete Klasse für Grass, Grazor, fleshgrazer und deren Evolutionen dienen
 {
     constructor(x,y)
     {

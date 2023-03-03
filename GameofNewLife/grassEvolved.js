@@ -1,4 +1,5 @@
-class EvolvedGrass extends LivingCreature
+const LivingCreature = require("./livingCreature");
+module.exports = class EvolvedGrass extends LivingCreature
 {
     constructor(x,y, offDeff)
     {

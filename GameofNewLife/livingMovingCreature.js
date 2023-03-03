@@ -1,4 +1,5 @@
-class LivingMovingCreature extends LivingCreature
+const LivingCreature = require("./livingCreature");
+module.exports = class LivingMovingCreature extends LivingCreature
 {
     constructor(x, y)
     {
