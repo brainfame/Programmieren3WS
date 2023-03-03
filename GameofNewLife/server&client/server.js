@@ -14,10 +14,17 @@ server.listen(8080, function() //Anfangsfunction bei Aktivierung des Servers Sie
     console.log("Server started");
 });
 
+<<<<<<< HEAD
 //app.use(express.static("../"));
 app.get("/GOL", function()
 {
     res.redirect("indexSC.html");   
+=======
+app.use(express.static("./"));
+app.get("/GOL", function()
+{
+    res.redirect("indexSC.html");
+>>>>>>> b39a8e263d080b46c7162939842cdf362d74dabf
 });
 
 io.on("connection", function(socket)
